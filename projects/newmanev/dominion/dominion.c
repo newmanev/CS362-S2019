@@ -708,6 +708,11 @@ int outpostCardEffect(struct gameState * state, int handPos, int currentPlayer) 
   //set outpost flag
   state->outpostPlayed++;
 
+  //can't play outpost more than once
+  if (state->outpostPlayed > 1){
+    return -1;
+  }
+
   //discard card
   discardCard(handPos, currentPlayer, state, 0);
   return 0;
