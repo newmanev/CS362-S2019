@@ -3,7 +3,27 @@
 #include <string.h>
 #include <stdio.h>
 #include "rngs.h"
-#include "assert_helper.c"
+#include <stdlib.h>
+
+int assert_helper (char *test_name, int result, int expect) {
+  if(result != expect) {
+    printf("Fail - %s\n\tResult: %d\n\tExpected: %d\n", test_name, result, expect);
+    return 1;
+  } else {
+    printf("Pass - %s\n\tResult: %d\n\tExpected: %d\n", test_name, result, expect);
+    return 0;
+  }
+}
+
+int assert_helper (char *test_name, int result, int expect) {
+  if(result != expect) {
+    printf("Fail - %s\n\tResult: %d\n\tExpected: %d\n", test_name, result, expect);
+    return 1;
+  } else {
+    printf("Pass - %s\n\tResult: %d\n\tExpected: %d\n", test_name, result, expect);
+    return 0;
+  }
+}
 
 int main () {
 		int expected = -5, result = -5;
