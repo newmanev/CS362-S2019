@@ -1,0 +1,37 @@
+#include "dominion.h"
+#include "dominion_helpers.h"
+#include <string.h>
+#include <stdio.h>
+#include "rngs.h"
+#include "assert_helper.c"
+
+int main () {
+		int expected = -5, result = -5;
+        int old_treasure_count = 0;
+        int new_treasure_count = 0;
+        int bonus = 0;
+        int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+		struct gameState G;
+
+        printf("********************************************\n");
+		printf("\tAdventurer Card Test\n");
+
+		initializeGame(2, k, 1, &G);
+
+		for (int i = 0; i < G.handCount[0]; i++) {
+			if (G.hand[0][i] == (copper || silver || gold))
+				old_treasure_count++;
+		}
+
+		int card_played = adventurerCardEffect(&G, 0, 0);
+
+        for (int i = 0; i < G.handCount[0]; i++) {
+			if (G.hand[0][i] == (copper || silver || gold))
+				new_treasure_count++;
+		}
+
+		expected = 2;
+		result = new_treasure_count - old_treasure_count;
+		assert_helper("Test correct treasure card amount added to hand", result, expected);
+
+}
