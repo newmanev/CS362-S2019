@@ -14,7 +14,7 @@ int main () {
 		struct gameState G;
 
         printf("********************************************\n");
-		printf("\tAdventurer Card Test\n");
+		printf("\tAdventurer Unit Test\n");
 
 		initializeGame(2, k, 1, &G);
 

@@ -13,7 +13,7 @@ int main () {
 		struct gameState G;
 
         printf("********************************************\n");
-		printf("\tGreathall Card Test\n");
+		printf("\tGreathall Unit Test\n");
 
 		initializeGame(2, k, 1, &G);
 
