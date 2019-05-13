@@ -4,8 +4,8 @@ default: testme
 
 testme: testme.c
 	echo "Random testing ouput: " >> testme.out
-	gcc -o testme testme.c $(CFLAGS)
-	./testme >> testme.out
+	gcc -o quiz testme.c $(CFLAGS)
+	./quiz >> testme.out
 
 clean:
-	rm testme.out testme *.gcov *.gcno *gcda
+	rm testme.out quiz *.gcov *.gcno *gcda
