@@ -17,10 +17,9 @@ int assert_helper (char *test_name, int result, int expect) {
 
 int main () {
 		int expected = -5, result = -5;
-        int old_treasure_count = 0;
-        int new_treasure_count = 0;
-        int bonus = 0;
-        int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+			int old_treasure_count = 0;
+			int new_treasure_count = 0;
+			int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
 		struct gameState G;
 
         printf("********************************************\n");
@@ -35,8 +34,8 @@ int main () {
 
 		int card_played = adventurerCardEffect(&G, 0, 0);
 
-        for (int i = 0; i < G.handCount[0]; i++) {
-			if (G.hand[0][i] == (copper || silver || gold))
+    for (int i = 0; i < G.handCount[0]; i++) {
+	  	if (G.hand[0][i] == (copper || silver || gold))
 				new_treasure_count++;
 		}
 
