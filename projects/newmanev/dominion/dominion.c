@@ -647,12 +647,12 @@ int villageCardEffect(int currentPlayer, struct gameState * state, int handPos) 
 
 int adventurerCardEffect(struct gameState * state, int drawntreasure, int currentPlayer) {
 
-  int z;
+  int z = 0;
   int cardDrawn;
   int temphand[MAX_HAND]; // moved above the if statement
 
   //BUG should be: drawntreasure < 2
-  while (drawntreasure < 1) {
+  while (drawntreasure < 2) {
     if (state->deckCount[currentPlayer] < 1) { //if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
     }
