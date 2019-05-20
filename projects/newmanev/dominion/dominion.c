@@ -679,7 +679,7 @@ int smithyCardEffect(struct gameState * state, int handPos, int currentPlayer) {
 
   //+3 Cards
   //BUG should be: < 3
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < 3; i++) {
     drawCard(currentPlayer, state);
   }
 
