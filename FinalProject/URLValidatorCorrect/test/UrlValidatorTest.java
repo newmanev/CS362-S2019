@@ -429,7 +429,7 @@ protected void setUp() {
 
    public void testValidator361() {
        UrlValidator validator = new UrlValidator();
-       assertTrue(validator.isValid("http://hello.tokyo/"));
+       assertTrue(validator.isValid("http://hello.tokyo/")); //100
     }
 
    public void testValidator363(){
