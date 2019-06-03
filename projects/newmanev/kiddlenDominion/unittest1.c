@@ -28,7 +28,7 @@ int main () {
 		initializeGame(2, k, 1, &G);
 
 		old_players_hand = G.handCount[0];
-		int card_played = villageCardEffect(0, &G, 0);
+		int card_played = villageEffect(0, &G, 0);
 		new_players_hand = G.handCount[0];
 
 		expected = 0;

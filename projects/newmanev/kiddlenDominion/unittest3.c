@@ -28,7 +28,7 @@ int main () {
 		initializeGame(2, k, 1, &G);
 
 		old_players_hand = G.handCount[0];
-		int card_played = smithyCardEffect(&G, 0, 0);
+		int card_played = smithyEffect(0, &G, 0, 0);
 		new_players_hand = G.handCount[0];
 
 		expected = 2;

@@ -46,7 +46,8 @@ int main () {
         int current_players = rand() % num_players;
         int drawn_treasure = rand() % 2;
 
-        int card_played = adventurerCardEffect(&T, drawn_treasure, current_players);
+        int temphand[MAX_HAND];
+        int card_played = adventurerEffect(current_players, &T, drawn_treasure, 0, temphand, 0);
 
         for (int i = 0; i < T.handCount[0]; i++) {
             if (T.hand[0][i] == (copper || silver || gold))

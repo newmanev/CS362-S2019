@@ -31,8 +31,8 @@ int main () {
 			if (G.hand[0][i] == (copper || silver || gold))
 				old_treasure_count++;
 		}
-
-		int card_played = adventurerCardEffect(&G, 0, 0);
+		int temphand[MAX_HAND];
+		int card_played = adventurerEffect(0, &G, 0, 0, temphand, 0);
 
     for (int i = 0; i < G.handCount[0]; i++) {
 	  	if (G.hand[0][i] == (copper || silver || gold))

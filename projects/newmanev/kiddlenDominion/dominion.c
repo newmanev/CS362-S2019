@@ -666,7 +666,7 @@ int adventurerEffect(int currentPlayer, struct gameState *state, int drawntreasu
     return -1; //TODO: bug
 }
 
-int counsil_roomEffect(int currentPlayer, struct gameState *state, int handPos, int i){
+int counsil_roomEffect(int currentPlayer, struct gameState *state, int handPos){
     int i;
     //+4 Cards
     for (i = 0; i < 4; i++){
@@ -747,7 +747,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             adventurerEffect(currentPlayer, state, drawntreasure, cardDrawn, temphand, z);
 			
         case council_room:
-            counsil_roomEffect(currentPlayer, state, handPos, i);
+            counsil_roomEffect(currentPlayer, state, handPos);
 			
     case feast:
       //gain card with cost up to 5

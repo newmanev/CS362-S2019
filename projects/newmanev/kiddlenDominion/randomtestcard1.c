@@ -43,7 +43,7 @@ int main () {
 
         old_hand_count = T.handCount[current_players];
 
-        int card_played = smithyCardEffect(&T, hand_pos, current_players);
+        int card_played = smithyEffect(current_players, &T, hand_pos, 0);
 
         new_hand_count = T.handCount[current_players];
 
