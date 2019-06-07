@@ -201,13 +201,13 @@ protected void setUp() {
 	   assertFalse(urlVal.isValid("http:wow/true"));
 	   
 	   // Edge Case: authority
-	   assertFalse(urlVal.isValid("https://xxx.false.come"));
 	   assertFalse(urlVal.isValid("https://*(W(C*N#*@0.toomanyws.com"));
 	   assertFalse(urlVal.isValid("https://www.google.www.come"));
 	   assertFalse(urlVal.isValid("https://.wheretheauthoritygo"));
 	   
 	   // Edge Case: domain
 	   assertFalse(urlVal.isValid("https://nodomain"));
+	   assertFalse(urlVal.isValid("https://xxx.false.come"));
 	   assertFalse(urlVal.isValid("http://900192973904"));
 	   assertFalse(urlVal.isValid("https://www.foo.flop"));
 	   assertFalse(urlVal.isValid("https://invaliddomain.wack"));
