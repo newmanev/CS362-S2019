@@ -18,7 +18,7 @@
 import junit.framework.TestCase;
 
 /**
- * Performs Validation Test for url validations.
+ * Performs Validation Test for URL validations.
  *
  * @version $Revision$
  */
@@ -334,14 +334,15 @@ protected void setUp() {
     static boolean incrementTestPartsIndex(int[] testPartsIndex, Object[] testParts) {
       boolean carry = true;  //add 1 to lowest order part.
       boolean maxIndex = true;
-      for (int testPartsIndexIndex = testPartsIndex.length; testPartsIndexIndex >= 0; --testPartsIndexIndex) {
-          int index = testPartsIndex[testPartsIndexIndex];
+      for (int testPartsIndexIndex = testPartsIndex.length-1; testPartsIndexIndex >= 0; --testPartsIndexIndex) {
+         int index = testPartsIndex[testPartsIndexIndex];
          ResultPair[] part = (ResultPair[]) testParts[testPartsIndexIndex];
          maxIndex &= (index == (part.length - 1));
          
          if (carry) {
             if (index < part.length - 1) {
-            	index--;
+            	//index--; BUG
+            	index++;
                testPartsIndex[testPartsIndexIndex] = index;
                carry = false;
             } else {
