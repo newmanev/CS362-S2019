@@ -124,212 +124,110 @@ protected void setUp() {
          System.out.println();
       }
    }
-
-   public void testValidator202() {
-       String[] schemes = {"http","https"};
-       UrlValidator urlValidator = new UrlValidator(schemes, UrlValidator.NO_FRAGMENTS);
-       assertTrue(urlValidator.isValid("http://l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.l.org"));
+   
+   public void testValidator600() {
+	   UrlValidator urlVal = new UrlValidator();
+	   
+		assertTrue(urlVal.isValid("http://www.example.org/?belief=bedroom&belief=bikes"));
+		assertTrue(urlVal.isValid("https://example.com/"));
+		assertTrue(urlVal.isValid("http://example.com/angle/brick"));
+		assertTrue(urlVal.isValid("https://www.example.com/"));
+		assertTrue(urlVal.isValid("http://example.com/"));
+		assertTrue(urlVal.isValid("https://example.com/?amusement=army#adjustment"));
+		assertTrue(urlVal.isValid("https://www.example.com/bird.aspx"));
+		assertTrue(urlVal.isValid("https://example.com/alarm.php"));
+		assertTrue(urlVal.isValid("http://bike.example.com/blade/bit.php"));
+		assertTrue(urlVal.isValid("https://www.example.com/bomb"));
+		assertTrue(urlVal.isValid("http://www.example.com/apparel.php?aftermath=basket&army=argument"));
+		assertTrue(urlVal.isValid("http://www.example.com/?bottle=beef"));
+		assertTrue(urlVal.isValid("http://amount.example.com/?apparatus=bead&beef=box"));
+		assertTrue(urlVal.isValid("http://example.com/apparel.php"));
+		assertTrue(urlVal.isValid("https://example.net/"));
+		assertTrue(urlVal.isValid("http://www.example.com/bat"));
+		assertTrue(urlVal.isValid("http://www.example.com/arm#army"));
+		assertTrue(urlVal.isValid("http://www.example.com/breath/acoustics?box=amount"));
+		assertTrue(urlVal.isValid("http://bait.example.net/"));
+		assertTrue(urlVal.isValid("http://www.example.net/bed/bait.php"));
+		assertTrue(urlVal.isValid("http://example.com/"));
+		assertTrue(urlVal.isValid("https://www.example.com/"));
+		assertTrue(urlVal.isValid("https://afterthought.example.com/border.html"));
+		assertTrue(urlVal.isValid("https://example.com/brass/bait"));
+		assertTrue(urlVal.isValid("http://www.example.com/?bell=books"));
+		assertTrue(urlVal.isValid("http://example.net/border/appliance.htm"));
+		assertTrue(urlVal.isValid("http://example.com/bell.htm#agreement"));
+		assertTrue(urlVal.isValid("http://bird.example.com/anger"));
+		assertTrue(urlVal.isValid("https://www.example.com/"));
+		assertTrue(urlVal.isValid("http://example.edu/"));
+		assertTrue(urlVal.isValid("https://example.com/"));
+		assertTrue(urlVal.isValid("http://example.com/behavior/believe.htm"));
+		assertTrue(urlVal.isValid("https://www.example.com/"));
+		assertTrue(urlVal.isValid("https://www.example.com/"));
+		assertTrue(urlVal.isValid("https://www.example.com/?bubble=bee"));
+		assertTrue(urlVal.isValid("http://account.example.net/bat/activity.php"));
+		assertTrue(urlVal.isValid("https://example.org/birth/brass"));
+		assertTrue(urlVal.isValid("https://bee.example.com/"));
+		assertTrue(urlVal.isValid("http://www.example.com/"));
+		assertTrue(urlVal.isValid("http://behavior.example.net/afternoon.htm"));
+		assertTrue(urlVal.isValid("http://example.com/birth#books"));
+		assertTrue(urlVal.isValid("http://example.com/ball/attraction.htm"));
+		assertTrue(urlVal.isValid("http://www.example.com/"));
+		assertTrue(urlVal.isValid("http://example.com/bite"));
+		assertTrue(urlVal.isValid("https://book.example.com/"));
+		assertTrue(urlVal.isValid("https://www.example.com/beginner/bait"));
+		assertTrue(urlVal.isValid("http://www.example.com/"));
+		assertTrue(urlVal.isValid("https://example.com/"));
+		assertTrue(urlVal.isValid("https://www.example.edu/birds/birth"));
+		assertTrue(urlVal.isValid("http://example.com/beds/beds.htm#breath"));
+	   
    }
-
-   public void testValidator204() {
-       String[] schemes = {"http","https"};
-       UrlValidator urlValidator = new UrlValidator(schemes);
-       assertTrue(urlValidator.isValid("http://tech.yahoo.com/rc/desktops/102;_ylt=Ao8yevQHlZ4On0O3ZJGXLEQFLZA5"));
+   
+   public void testValidator601() {
+	   UrlValidator urlVal = new UrlValidator();
+	   
+	   // Edge Case: Length
+	   assertFalse(urlVal.isValid(""));
+	   assertFalse(urlVal.isValid("i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i.i"));
+	   assertFalse(urlVal.isValid("asldkfja;lsdjfl;aje;fwiof293fh2838rf923fn289vpb29f3bp793b2;fgp9uhfc9QP39PC23C92)3F923P;FH)P293HC"));
+	   assertFalse(urlVal.isValid(":OKSEONVN:*"));
+	   
+	   // Edge Case: bad protocol
+	   assertFalse(urlVal.isValid("bad://www.google.com/"));
+	   assertFalse(urlVal.isValid("htttps://cool.com"));
+	   assertFalse(urlVal.isValid("htp://fun.edu"));
+	   
+	   // Edge Case: "://" format
+	   assertFalse(urlVal.isValid("https/:/wow"));
+	   assertFalse(urlVal.isValid("https//:example"));
+	   assertFalse(urlVal.isValid("http:wow/true"));
+	   
+	   // Edge Case: authority
+	   assertFalse(urlVal.isValid("https://xxx.false.come"));
+	   assertFalse(urlVal.isValid("https://*(W(C*N#*@0.toomanyws.com"));
+	   assertFalse(urlVal.isValid("https://www.google.www.come"));
+	   assertFalse(urlVal.isValid("https://.wheretheauthoritygo"));
+	   
+	   // Edge Case: domain
+	   assertFalse(urlVal.isValid("https://nodomain"));
+	   assertFalse(urlVal.isValid("http://900192973904"));
+	   assertFalse(urlVal.isValid("https://www.foo.flop"));
+	   assertFalse(urlVal.isValid("https://invaliddomain.wack"));
+	   
+	   // Edge Case: invalid path
+	   assertFalse(urlVal.isValid("http://path/is/invalid/??*((*"));
+	   assertFalse(urlVal.isValid("https://=false"));
+	   assertFalse(urlVal.isValid("https://?"));
+	   
+	   // Edge Case: invalid characters
+	   assertFalse(urlVal.isValid("https:// "));
+	   assertFalse(urlVal.isValid(" https://www.google.com"));
+	   assertFalse(urlVal.isValid("https://can'tdothat"));
+	   assertFalse(urlVal.isValid("https://example.com\forwardslash"));
+	   assertFalse(urlVal.isValid("https:\\forwardslash"));
+	   
+	   // Edge Case: missing name
+	   assertFalse(urlVal.isValid("https://.edu"));
+	   
    }
-
-   public void testValidator218() {
-       UrlValidator validator = new UrlValidator(UrlValidator.ALLOW_2_SLASHES);
-       assertTrue("parentheses should be valid in URLs",
-               validator.isValid("http://somewhere.com/pathxyz/file(1).html"));
-   }
-
-   public void testValidator235() {
-       String version = System.getProperty("java.version");
-       if (version.compareTo("1.6") < 0) {
-           System.out.println("Cannot run Unicode IDN tests");
-           return; // Cannot run the test
-       }
-       UrlValidator validator = new UrlValidator();
-       assertTrue("xn--d1abbgf6aiiy.xn--p1ai should validate", validator.isValid("http://xn--d1abbgf6aiiy.xn--p1ai"));
-       assertTrue("президент.рф should validate", validator.isValid("http://президент.рф"));
-       assertTrue("www.b\u00fccher.ch should validate", validator.isValid("http://www.b\u00fccher.ch"));
-       assertFalse("www.\uFFFD.ch FFFD should fail", validator.isValid("http://www.\uFFFD.ch"));
-       assertTrue("www.b\u00fccher.ch should validate", validator.isValid("ftp://www.b\u00fccher.ch"));
-       assertFalse("www.\uFFFD.ch FFFD should fail", validator.isValid("ftp://www.\uFFFD.ch"));
-   }
-
-    public void testValidator248() {
-        RegexValidator regex = new RegexValidator(new String[] {"localhost", ".*\\.my-testing"});
-        UrlValidator validator = new UrlValidator(regex, 0);
-
-        assertTrue("localhost URL should validate",
-                validator.isValid("http://localhost/test/index.html"));
-        assertTrue("first.my-testing should validate",
-                validator.isValid("http://first.my-testing/test/index.html"));
-        assertTrue("sup3r.my-testing should validate",
-                validator.isValid("http://sup3r.my-testing/test/index.html"));
-
-        assertFalse("broke.my-test should not validate",
-                validator.isValid("http://broke.my-test/test/index.html"));
-
-        assertTrue("www.apache.org should still validate",
-                validator.isValid("http://www.apache.org/test/index.html"));
-
-        // Now check using options
-        validator = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
-
-        assertTrue("localhost URL should validate",
-              validator.isValid("http://localhost/test/index.html"));
-
-        assertTrue("machinename URL should validate",
-              validator.isValid("http://machinename/test/index.html"));
-
-        assertTrue("www.apache.org should still validate",
-              validator.isValid("http://www.apache.org/test/index.html"));
-    }
-
-    public void testValidator288() {
-        UrlValidator validator = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
-
-        assertTrue("hostname should validate",
-                validator.isValid("http://hostname"));
-
-        assertTrue("hostname with path should validate",
-                validator.isValid("http://hostname/test/index.html"));
-
-        assertTrue("localhost URL should validate",
-                validator.isValid("http://localhost/test/index.html"));
-
-        assertFalse("first.my-testing should not validate",
-                validator.isValid("http://first.my-testing/test/index.html"));
-
-        assertFalse("broke.hostname should not validate",
-                validator.isValid("http://broke.hostname/test/index.html"));
-
-        assertTrue("www.apache.org should still validate",
-                validator.isValid("http://www.apache.org/test/index.html"));
-
-        // Turn it off, and check
-        validator = new UrlValidator(0);
-
-        assertFalse("hostname should no longer validate",
-                validator.isValid("http://hostname"));
-
-        assertFalse("localhost URL should no longer validate",
-                validator.isValid("http://localhost/test/index.html"));
-
-        assertTrue("www.apache.org should still validate",
-                validator.isValid("http://www.apache.org/test/index.html"));
-    }
-
-    public void testValidator276() {
-        // file:// isn't allowed by default
-        UrlValidator validator = new UrlValidator();
-
-        assertTrue("http://apache.org/ should be allowed by default",
-                 validator.isValid("http://www.apache.org/test/index.html"));
-
-        assertFalse("file:///c:/ shouldn't be allowed by default",
-                 validator.isValid("file:///C:/some.file"));
-
-        assertFalse("file:///c:\\ shouldn't be allowed by default",
-              validator.isValid("file:///C:\\some.file"));
-
-        assertFalse("file:///etc/ shouldn't be allowed by default",
-              validator.isValid("file:///etc/hosts"));
-
-        assertFalse("file://localhost/etc/ shouldn't be allowed by default",
-              validator.isValid("file://localhost/etc/hosts"));
-
-        assertFalse("file://localhost/c:/ shouldn't be allowed by default",
-              validator.isValid("file://localhost/c:/some.file"));
-
-        // Turn it on, and check
-        // Note - we need to enable local urls when working with file:
-        validator = new UrlValidator(new String[] {"http","file"}, UrlValidator.ALLOW_LOCAL_URLS);
-
-        assertTrue("http://apache.org/ should be allowed by default",
-                 validator.isValid("http://www.apache.org/test/index.html"));
-
-        assertTrue("file:///c:/ should now be allowed",
-                 validator.isValid("file:///C:/some.file"));
-
-        // Currently, we don't support the c:\ form
-        assertFalse("file:///c:\\ shouldn't be allowed",
-              validator.isValid("file:///C:\\some.file"));
-
-        assertTrue("file:///etc/ should now be allowed",
-              validator.isValid("file:///etc/hosts"));
-
-        assertTrue("file://localhost/etc/ should now be allowed",
-              validator.isValid("file://localhost/etc/hosts"));
-
-        assertTrue("file://localhost/c:/ should now be allowed",
-              validator.isValid("file://localhost/c:/some.file"));
-
-        // These are never valid
-        assertFalse("file://c:/ shouldn't ever be allowed, needs file:///c:/",
-              validator.isValid("file://C:/some.file"));
-
-        assertFalse("file://c:\\ shouldn't ever be allowed, needs file:///c:/",
-              validator.isValid("file://C:\\some.file"));
-    }
-
-    public void testValidator391OK() {
-        String[] schemes = {"file"};
-        UrlValidator urlValidator = new UrlValidator(schemes);
-        assertTrue(urlValidator.isValid("file:///C:/path/to/dir/"));
-    }
-
-    public void testValidator391FAILS() {
-        String[] schemes = {"file"};
-        UrlValidator urlValidator = new UrlValidator(schemes);
-        assertTrue(urlValidator.isValid("file:/C:/path/to/dir/"));
-    }
-
-    public void testValidator309() {
-        UrlValidator urlValidator = new UrlValidator();
-        assertTrue(urlValidator.isValid("http://sample.ondemand.com/"));
-        assertTrue(urlValidator.isValid("hTtP://sample.ondemand.CoM/"));
-        assertTrue(urlValidator.isValid("httpS://SAMPLE.ONEMAND.COM/"));
-        urlValidator = new UrlValidator(new String[] {"HTTP","HTTPS"});
-        assertTrue(urlValidator.isValid("http://sample.ondemand.com/"));
-        assertTrue(urlValidator.isValid("hTtP://sample.ondemand.CoM/"));
-        assertTrue(urlValidator.isValid("httpS://SAMPLE.ONEMAND.COM/"));
-    }
-
-    public void testValidator339(){
-        UrlValidator urlValidator = new UrlValidator();
-        assertTrue(urlValidator.isValid("http://www.cnn.com/WORLD/?hpt=sitenav")); // without
-        assertTrue(urlValidator.isValid("http://www.cnn.com./WORLD/?hpt=sitenav")); // with
-        assertFalse(urlValidator.isValid("http://www.cnn.com../")); // doubly dotty
-        assertFalse(urlValidator.isValid("http://www.cnn.invalid/"));
-        assertFalse(urlValidator.isValid("http://www.cnn.invalid./")); // check . does not affect invalid domains
-    }
-
-    public void testValidator339IDN(){
-        UrlValidator urlValidator = new UrlValidator();
-        assertTrue(urlValidator.isValid("http://президент.рф/WORLD/?hpt=sitenav")); // without
-        assertTrue(urlValidator.isValid("http://президент.рф./WORLD/?hpt=sitenav")); // with
-        assertFalse(urlValidator.isValid("http://президент.рф..../")); // very dotty
-        assertFalse(urlValidator.isValid("http://президент.рф.../")); // triply dotty
-        assertFalse(urlValidator.isValid("http://президент.рф../")); // doubly dotty
-    }
-
-    public void testValidator342(){
-        UrlValidator urlValidator = new UrlValidator();
-        assertTrue(urlValidator.isValid("http://example.rocks/"));
-        assertTrue(urlValidator.isValid("http://example.rocks"));
-    }
-
-    public void testValidator411(){
-        UrlValidator urlValidator = new UrlValidator();
-        assertTrue(urlValidator.isValid("http://example.rocks:/"));
-        assertTrue(urlValidator.isValid("http://example.rocks:0/"));
-        assertTrue(urlValidator.isValid("http://example.rocks:65535/"));
-        assertFalse(urlValidator.isValid("http://example.rocks:65536/"));
-        assertFalse(urlValidator.isValid("http://example.rocks:100000/"));
-    }
 
     static boolean incrementTestPartsIndex(int[] testPartsIndex, Object[] testParts) {
       boolean carry = true;  //add 1 to lowest order part.
@@ -367,136 +265,6 @@ protected void setUp() {
       }
       return carryMsg.toString();
 
-   }
-
-   public void testValidateUrl() {
-      assertTrue(true);
-   }
-
-   public void testValidator290() {
-        UrlValidator validator = new UrlValidator();
-        assertTrue(validator.isValid("http://xn--h1acbxfam.idn.icann.org/"));
-//        assertTrue(validator.isValid("http://xn--e1afmkfd.xn--80akhbyknj4f"));
-        // Internationalized country code top-level domains
-        assertTrue(validator.isValid("http://test.xn--lgbbat1ad8j")); //Algeria
-        assertTrue(validator.isValid("http://test.xn--fiqs8s")); // China
-        assertTrue(validator.isValid("http://test.xn--fiqz9s")); // China
-        assertTrue(validator.isValid("http://test.xn--wgbh1c")); // Egypt
-        assertTrue(validator.isValid("http://test.xn--j6w193g")); // Hong Kong
-        assertTrue(validator.isValid("http://test.xn--h2brj9c")); // India
-        assertTrue(validator.isValid("http://test.xn--mgbbh1a71e")); // India
-        assertTrue(validator.isValid("http://test.xn--fpcrj9c3d")); // India
-        assertTrue(validator.isValid("http://test.xn--gecrj9c")); // India
-        assertTrue(validator.isValid("http://test.xn--s9brj9c")); // India
-        assertTrue(validator.isValid("http://test.xn--xkc2dl3a5ee0h")); // India
-        assertTrue(validator.isValid("http://test.xn--45brj9c")); // India
-        assertTrue(validator.isValid("http://test.xn--mgba3a4f16a")); // Iran
-        assertTrue(validator.isValid("http://test.xn--mgbayh7gpa")); // Jordan
-        assertTrue(validator.isValid("http://test.xn--mgbc0a9azcg")); // Morocco
-        assertTrue(validator.isValid("http://test.xn--ygbi2ammx")); // Palestinian Territory
-        assertTrue(validator.isValid("http://test.xn--wgbl6a")); // Qatar
-        assertTrue(validator.isValid("http://test.xn--p1ai")); // Russia
-        assertTrue(validator.isValid("http://test.xn--mgberp4a5d4ar")); //  Saudi Arabia
-        assertTrue(validator.isValid("http://test.xn--90a3ac")); // Serbia
-        assertTrue(validator.isValid("http://test.xn--yfro4i67o")); // Singapore
-        assertTrue(validator.isValid("http://test.xn--clchc0ea0b2g2a9gcd")); // Singapore
-        assertTrue(validator.isValid("http://test.xn--3e0b707e")); // South Korea
-        assertTrue(validator.isValid("http://test.xn--fzc2c9e2c")); // Sri Lanka
-        assertTrue(validator.isValid("http://test.xn--xkc2al3hye2a")); // Sri Lanka
-        assertTrue(validator.isValid("http://test.xn--ogbpf8fl")); // Syria
-        assertTrue(validator.isValid("http://test.xn--kprw13d")); // Taiwan
-        assertTrue(validator.isValid("http://test.xn--kpry57d")); // Taiwan
-        assertTrue(validator.isValid("http://test.xn--o3cw4h")); // Thailand
-        assertTrue(validator.isValid("http://test.xn--pgbs0dh")); // Tunisia
-        assertTrue(validator.isValid("http://test.xn--mgbaam7a8h")); // United Arab Emirates
-        // Proposed internationalized ccTLDs
-//        assertTrue(validator.isValid("http://test.xn--54b7fta0cc")); // Bangladesh
-//        assertTrue(validator.isValid("http://test.xn--90ae")); // Bulgaria
-//        assertTrue(validator.isValid("http://test.xn--node")); // Georgia
-//        assertTrue(validator.isValid("http://test.xn--4dbrk0ce")); // Israel
-//        assertTrue(validator.isValid("http://test.xn--mgb9awbf")); // Oman
-//        assertTrue(validator.isValid("http://test.xn--j1amh")); // Ukraine
-//        assertTrue(validator.isValid("http://test.xn--mgb2ddes")); // Yemen
-        // Test TLDs
-//        assertTrue(validator.isValid("http://test.xn--kgbechtv")); // Arabic
-//        assertTrue(validator.isValid("http://test.xn--hgbk6aj7f53bba")); // Persian
-//        assertTrue(validator.isValid("http://test.xn--0zwm56d")); // Chinese
-//        assertTrue(validator.isValid("http://test.xn--g6w251d")); // Chinese
-//        assertTrue(validator.isValid("http://test.xn--80akhbyknj4f")); // Russian
-//        assertTrue(validator.isValid("http://test.xn--11b5bs3a9aj6g")); // Hindi
-//        assertTrue(validator.isValid("http://test.xn--jxalpdlp")); // Greek
-//        assertTrue(validator.isValid("http://test.xn--9t4b11yi5a")); // Korean
-//        assertTrue(validator.isValid("http://test.xn--deba0ad")); // Yiddish
-//        assertTrue(validator.isValid("http://test.xn--zckzah")); // Japanese
-//        assertTrue(validator.isValid("http://test.xn--hlcj6aya9esc7a")); // Tamil
-    }
-
-   public void testValidator361() {
-       UrlValidator validator = new UrlValidator();
-       assertTrue(validator.isValid("http://hello.tokyo/"));
-    }
-
-   public void testValidator363(){
-        UrlValidator urlValidator = new UrlValidator();
-        assertTrue(urlValidator.isValid("http://www.example.org/a/b/hello..world"));
-        assertTrue(urlValidator.isValid("http://www.example.org/a/hello..world"));
-        assertTrue(urlValidator.isValid("http://www.example.org/hello.world/"));
-        assertTrue(urlValidator.isValid("http://www.example.org/hello..world/"));
-        assertTrue(urlValidator.isValid("http://www.example.org/hello.world"));
-        assertTrue(urlValidator.isValid("http://www.example.org/hello..world"));
-        assertTrue(urlValidator.isValid("http://www.example.org/..world"));
-        assertTrue(urlValidator.isValid("http://www.example.org/.../world"));
-        assertFalse(urlValidator.isValid("http://www.example.org/../world"));
-        assertFalse(urlValidator.isValid("http://www.example.org/.."));
-        assertFalse(urlValidator.isValid("http://www.example.org/../"));
-        assertFalse(urlValidator.isValid("http://www.example.org/./.."));
-        assertFalse(urlValidator.isValid("http://www.example.org/././.."));
-        assertTrue(urlValidator.isValid("http://www.example.org/..."));
-        assertTrue(urlValidator.isValid("http://www.example.org/.../"));
-        assertTrue(urlValidator.isValid("http://www.example.org/.../.."));
-    }
-
-   public void testValidator375() {
-       UrlValidator validator = new UrlValidator();
-       String url = "http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html";
-       assertTrue("IPv6 address URL should validate: " + url, validator.isValid(url));
-       url = "http://[::1]:80/index.html";
-       assertTrue("IPv6 address URL should validate: " + url, validator.isValid(url));
-       url = "http://FEDC:BA98:7654:3210:FEDC:BA98:7654:3210:80/index.html";
-       assertFalse("IPv6 address without [] should not validate: " + url, validator.isValid(url));
-    }
-
-
-   public void testValidator353() { // userinfo
-       UrlValidator validator = new UrlValidator();
-       assertTrue(validator.isValid("http://www.apache.org:80/path"));
-       assertTrue(validator.isValid("http://user:pass@www.apache.org:80/path"));
-       assertTrue(validator.isValid("http://user:@www.apache.org:80/path"));
-       assertTrue(validator.isValid("http://user@www.apache.org:80/path"));
-       assertTrue(validator.isValid("http://us%00er:-._~!$&'()*+,;=@www.apache.org:80/path"));
-       assertFalse(validator.isValid("http://:pass@www.apache.org:80/path"));
-       assertFalse(validator.isValid("http://:@www.apache.org:80/path"));
-       assertFalse(validator.isValid("http://user:pa:ss@www.apache.org/path"));
-       assertFalse(validator.isValid("http://user:pa@ss@www.apache.org/path"));
-   }
-
-   public void testValidator382() {
-       UrlValidator validator = new UrlValidator();
-       assertTrue(validator.isValid("ftp://username:password@example.com:8042/over/there/index.dtb?type=animal&name=narwhal#nose"));
-   }
-
-   public void testValidator380() {
-       UrlValidator validator = new UrlValidator();
-       assertTrue(validator.isValid("http://www.apache.org:80/path"));
-       assertTrue(validator.isValid("http://www.apache.org:8/path"));
-       assertTrue(validator.isValid("http://www.apache.org:/path"));
-   }
-
-   public void testValidator420() {
-       UrlValidator validator = new UrlValidator();
-       assertFalse(validator.isValid("http://example.com/serach?address=Main Avenue"));
-       assertTrue(validator.isValid("http://example.com/serach?address=Main%20Avenue"));
-       assertTrue(validator.isValid("http://example.com/serach?address=Main+Avenue"));
    }
 
    //-------------------- Test data for creating a composite URL
