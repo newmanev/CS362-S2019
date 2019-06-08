@@ -16,7 +16,7 @@
  */
 
 import junit.framework.TestCase;
-
+import java.util.Random;
 /**
  * Performs Validation Test for URL validations.
  *
@@ -267,6 +267,362 @@ protected void setUp() {
 
    }
 
+   public String randString_http_www_com(){
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+       rand.append("http://");
+       rand.append("www.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".com");
+	   return rand.toString();
+	   
+   }
+   public String randString_ftp_www_com(){
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+       rand.append("ftp://");
+       rand.append("www.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".com");
+	   return rand.toString();
+   }
+   
+   public String randString_false_www_com(){
+	   
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+       rand.append("icup://");
+       rand.append("www.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".com");
+	   return rand.toString();  
+   }
+
+   public String randString_http_www_false(){
+	   
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+       rand.append("http://");
+       rand.append("www.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".a"); //false
+	   return rand.toString();
+	   
+   }
+   public String randString_ftp_www_au(){
+	   
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+       rand.append("ftp://");
+       rand.append("www.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".au");
+	   return rand.toString();
+	   
+   }
+   
+   public String randString_h3t_www_uk(){
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+       rand.append("h3t://");
+       rand.append("www.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".uk");
+	   return rand.toString();  
+   }
+   
+   public String randString_http_www1_false(){
+	   
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+       rand.append("http://");
+       rand.append("www1.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".a"); //false
+	   return rand.toString();
+	   
+   }
+   public String randString_ftp_false_au(){
+	   
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+       rand.append("ftp://");
+       rand.append("whatisupppp.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".au");
+	   return rand.toString();
+	   
+   }
+   
+   public String randString_none_none_uk(){
+	   
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+       rand.append("");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".uk");
+	   return rand.toString();  
+   }
+   
+   //just random domain
+   public void testValidator001() {
+       UrlValidator validator = new UrlValidator();
+       for (int i = 0; i < 10000; i++) {
+	       assertTrue(validator.isValid(randString_http_www_com()));
+	       assertTrue(validator.isValid(randString_ftp_www_com()));
+	       assertFalse(validator.isValid(randString_false_www_com()));
+	       assertFalse(validator.isValid(randString_http_www_false()));
+	       assertFalse(validator.isValid(randString_h3t_www_uk()));
+	       assertTrue(validator.isValid(randString_ftp_www_au()));
+	       assertFalse(validator.isValid(randString_http_www1_false()));
+	       assertTrue(validator.isValid(randString_ftp_false_au()));
+	       assertFalse(validator.isValid(randString_none_none_uk()));
+       }
+   }
+   
+   
+   public String randScheme_www_com(){
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+	   for (int i = 0; i < 4; i++) { //7 is the length of http://, so it is possible but unlikely
+	       char letter = alphabet.charAt(r.nextInt(N));
+	       rand.append(letter);
+	   }	   
+	   rand.append("://");
+       rand.append("www.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".com");
+	   return rand.toString();
+	   
+   }
+   
+
+   public String randScheme_www_false(){
+	   
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+	   for (int i = 0; i < 4; i++) { //7 is the length of http://, so it is possible but unlikely
+	       char letter = alphabet.charAt(r.nextInt(N));
+	       rand.append(letter);
+	   }	   
+	   rand.append("://");  
+	   rand.append("www.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".a"); //false
+	   return rand.toString();
+	   
+   }
+   public String randScheme_www_au(){
+	   
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+	   for (int i = 0; i < 4; i++) { //7 is the length of http://, so it is possible but unlikely
+	       char letter = alphabet.charAt(r.nextInt(N));
+	       rand.append(letter);
+	   }	   
+	   rand.append("://");
+	   rand.append("www.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".au");
+	   return rand.toString();
+	   
+   }
+   
+   public String randScheme_www_uk(){
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+	   for (int i = 0; i < 4; i++) { //7 is the length of http://, so it is possible but unlikely
+	       char letter = alphabet.charAt(r.nextInt(N));
+	       rand.append(letter);
+	   }	   
+	   rand.append("://");      
+	   rand.append("www.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".uk");
+	   return rand.toString();  
+   }
+   
+   public String randScheme_www1_false(){
+	   
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+	   for (int i = 0; i < 4; i++) { //7 is the length of http://, so it is possible but unlikely
+	       char letter = alphabet.charAt(r.nextInt(N));
+	       rand.append(letter);
+	   }	   
+	   rand.append("://");   
+	   rand.append("www1.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".a"); //false
+	   return rand.toString();
+	   
+   }
+   public String randScheme_false_au(){
+	   
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+	   for (int i = 0; i < 4; i++) { //7 is the length of http://, so it is possible but unlikely
+	       char letter = alphabet.charAt(r.nextInt(N));
+	       rand.append(letter);
+	   }	   
+	   rand.append("://");       
+	   rand.append("whatisupppp.");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".au");
+	   return rand.toString();
+	   
+   }
+   
+   public String randScheme_none_uk(){
+	   
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+	   for (int i = 0; i < 4; i++) { //7 is the length of http://, so it is possible but unlikely
+	       char letter = alphabet.charAt(r.nextInt(N));
+	       rand.append(letter);
+	   }	   
+	   rand.append("://");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".uk");
+	   return rand.toString();  
+   }
+   
+   
+   //random scheme + domain
+   public void testValidator002() {
+       UrlValidator validator = new UrlValidator();
+       for (int i = 0; i < 10000; i++) {
+	       assertFalse(validator.isValid(randScheme_www_com()));
+	       assertFalse(validator.isValid(randScheme_www_false()));
+	       assertFalse(validator.isValid(randScheme_www_uk()));
+	       assertFalse(validator.isValid(randScheme_www_au()));
+	       assertFalse(validator.isValid(randScheme_www1_false()));
+	       assertFalse(validator.isValid(randScheme_false_au()));
+	       assertFalse(validator.isValid(randScheme_none_uk()));
+       }
+   }
+   
+   // all is random not likely to be a url
+   
+   
+   public String randAll(){
+	   
+	   final String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   final int N = alphabet.length();
+	   Random r = new Random();
+       StringBuilder rand = new StringBuilder("");
+	   for (int i = 0; i < 4; i++) { //7 is the length of http://, so it is possible but unlikely
+	       char letter = alphabet.charAt(r.nextInt(N));
+	       rand.append(letter);
+	   }	   
+	   rand.append("://");
+	   for (int i = 0; i < 3; i++) { //3 is the length of www, so it is possible but unlikely
+	       char letter = alphabet.charAt(r.nextInt(N));
+	       rand.append(letter);
+	   }	 
+	   rand.append(".");
+	   for (int i = 0; i < 8; i++) {
+		       char letter = alphabet.charAt(r.nextInt(N));
+		       rand.append(letter);
+	   }
+	   rand.append(".");
+	   for (int i = 0; i < 2; i++) {
+	       char letter = alphabet.charAt(r.nextInt(N));
+	       rand.append(letter);
+	   }
+	   return rand.toString();  
+   }
+   
+   
+   public void testValidator003() {
+       UrlValidator validator = new UrlValidator();
+       for (int i = 0; i < 1000; i++) {
+	       assertFalse(validator.isValid(randAll()));
+       }
+   }
+   
+   
+   
    //-------------------- Test data for creating a composite URL
    /**
     * The data given below approximates the 4 parts of a URL
