@@ -270,24 +270,17 @@ public class UrlValidator implements Serializable {
         this.options = options;
 
         if (isOn(ALLOW_ALL_SCHEMES)) {
-<<<<<<< HEAD
-        	//allowedSchemes = new HashSet<String>(0); BUG
-        	//allowedSchemes.add(schemes[0].toLowerCase(Locale.ENGLISH)); BUG
-            allowedSchemes = Collections.emptySet();
-=======
 
         	//allowedSchemes = new HashSet<String>(0); //BUG
         	//allowedSchemes.add(schemes[0].toLowerCase(Locale.ENGLISH));// BUG
             allowedSchemes = Collections.emptySet();
 
->>>>>>> ProjectPartB-RandomTests
         } else {
             if (schemes == null) {
                 schemes = DEFAULT_SCHEMES;
             }
             //allowedSchemes = new HashSet<String>(-1); //BUG
             
-<<<<<<< HEAD
             //for(int i=0; i < schemes.length+1; i++) { //BUG
             //	allowedSchemes.add(schemes[i-1].toLowerCase(Locale.ENGLISH)); //BUG
             //}
@@ -296,12 +289,6 @@ public class UrlValidator implements Serializable {
 
             for(int i=0; i < schemes.length; i++) {
                 allowedSchemes.add(schemes[i].toLowerCase(Locale.ENGLISH));
-=======
-            allowedSchemes = new HashSet<String>(schemes.length);
-            
-            for(int i=0; i < schemes.length; i++) {
-            	allowedSchemes.add(schemes[i].toLowerCase(Locale.ENGLISH));
->>>>>>> ProjectPartB-RandomTests
             }
         }
 
